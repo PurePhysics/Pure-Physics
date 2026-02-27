@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Physics | 2026 A/L Revision with Dhulhara Ahansa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #151b3d;
+            --accent-blue: #2563eb;
+            --accent-purple: #9333ea;
+            --electric-purple: #c084fc;
+            --glow-purple: rgba(147, 51, 234, 0.5);
+            --glow-blue: rgba(37, 99, 235, 0.5);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --live-red: #ef4444;
+            --live-glow: rgba(239, 68, 68, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--electric-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--electric-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/7dbdea49251cdd1cb4b8b2d5bec0b353903adf52.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            filter: hue-rotate(220deg) saturate(1.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--electric-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .tutor-name {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            box-shadow: 0 4px 15px var(--glow-purple);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--glow-purple);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-purple);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(147, 51, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-live {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            box-shadow: 0 4px 15px var(--live-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px var(--live-glow); }
+            50% { box-shadow: 0 4px 25px var(--live-glow); }
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            background: rgba(21, 27, 61, 0.8);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transform: rotate(-5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .formula-display {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.25rem;
+            color: var(--electric-purple);
+            text-shadow: 0 0 10px var(--glow-purple);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--electric-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        /* Live Class Section */
+        .live-section {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(147, 51, 234, 0.1));
+            border: 2px solid var(--live-red);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+        }
+
+        .live-section::before {
+            content: 'LIVE';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--live-red);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--live-red);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--live-red);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        /* Monthly Classes Grid */
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .month-card {
+            background: var(--secondary-dark);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .month-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .month-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+        }
+
+        .month-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .month-card.active {
+            border-color: var(--accent-purple);
+            background: linear-gradient(135deg, var(--secondary-dark), rgba(147, 51, 234, 0.1));
+        }
+
+        .month-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .month-card .meta {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .month-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Content Display Area */
+        .content-display {
+            background: var(--secondary-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            display: none;
+        }
+
+        .content-display.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .resources-panel {
+            background: rgba(10, 14, 39, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .resources-panel h4 {
+            margin-bottom: 1rem;
+            color: var(--electric-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pdf-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .pdf-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pdf-item:hover {
+            background: rgba(147, 51, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .pdf-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pdf-icon {
+            color: #ef4444;
+            font-size: 1.25rem;
+        }
+
+        .download-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .download-btn:hover {
+            background: var(--electric-purple);
+            transform: scale(1.05);
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--secondary-dark);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--secondary-dark);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-call {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #059669, #22c55e);
+            color: white;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .months-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-blue), var(--electric-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px var(--glow-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="brand">
+                <i class="fas fa-atom"></i>
+                Pure Physics
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#live">Live Class</a></li>
+                <li><a href="#months">Monthly Classes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="subtitle">2026 A/L Revision</div>
+                <h1>Master Physics with Confidence</h1>
+                <div class="tutor-name">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    Tutor: Dhulhara Ahansa
+                </div>
+                <p class="tagline">
+                    "Physics is not about memorizing formulas, it's about understanding the beautiful dance of the universe. Every equation tells a story, every graph reveals a truth."
+                </p>
+                <div class="hero-buttons">
+                    <a href="#months" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i>
+                        Monthly Classes
+                    </a>
+                    <a href="#live" class="btn btn-live">
+                        <i class="fas fa-broadcast-tower"></i>
+                        Live Today
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="formula-display">
+                        F = ma<br>
+                        E = mc²<br>
+                        ∮E·dA = Q/ε₀<br>
+                        <span style="font-size: 0.8rem; opacity: 0.7;">Pure Physics 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Today Section -->
+    <section class="live-section" id="live">
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            Live Today Class
+        </div>
+        <h2 style="margin-bottom: 1rem;">Today's Live Session</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Join the live revision class with Dhulhara Ahansa. Interactive Q&A and real-time problem solving.
+        </p>
+        <div class="video-container" style="margin-bottom: 0;">
+            <iframe 
+                src="https://www.youtube.com/embed/live_stream?channel=UCxxxxxxxx" 
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
+            <i class="fas fa-info-circle"></i> 
+            Replace the YouTube URL above with your actual live stream URL or embed code.
+        </p>
+    </section>
+
+    <!-- Monthly Classes Section -->
+    <section id="months">
+        <div class="section-header">
+            <h2>Monthly Revision Classes</h2>
+            <p>Structured learning throughout 2026 - Select a month to access videos and notes</p>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="monthSearch" placeholder="Search months or topics..." onkeyup="searchMonths()">
+        </div>
+
+        <div class="months-grid" id="monthsGrid">
+            <!-- Months will be generated by JavaScript -->
+        </div>
+
+        <!-- Content Display Area -->
+        <div class="content-display" id="contentDisplay">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 id="selectedMonthTitle" class="text-gradient"></h3>
+                <button onclick="closeContent()" class="btn btn-secondary" style="padding: 0.5rem 1rem;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+            
+            <div class="content-grid">
+                <div class="video-section">
+                    <h4 style="margin-bottom: 1rem; color: var(--electric-purple);">
+                        <i class="fas fa-video"></i> Video Lessons
+                    </h4>
+                    <div class="video-container" id="videoContainer">
+                        <iframe id="monthVideo" src="" allowfullscreen></iframe>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(147, 51, 234, 0.1); border-radius: 8px; border-left: 3px solid var(--accent-purple);">
+                        <p style="font-size: 0.875rem; color: var(--text-secondary);">
+                            <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Watch the video fully before downloading the notes. Pause and rewind to understand complex concepts.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="resources-section">
+                    <div class="resources-panel">
+                        <h4><i class="fas fa-file-pdf"></i> Download Notes</h4>
+                        <ul class="pdf-list" id="pdfList">
+                            <!-- PDFs will be listed here -->
+                        </ul>
+                    </div>
+
+                    <div class="resources-panel" style="margin-top: 1rem;">
+                        <h4><i class="fas fa-tasks"></i> Topics Covered</h4>
+                        <ul id="topicsList" style="list-style: none; color: var(--text-secondary); font-size: 0.875rem; line-height: 2;">
+                            <!-- Topics will be listed here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>Get in touch with Dhulhara Ahansa for enrollment and inquiries</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone 1</h3>
+                <p>076 473 8501</p>
+                <a href="tel:0764738501" class="contact-btn btn-call">
+                    <i class="fas fa-phone-alt"></i> Click to Call
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone 2</h3>
+                <p>078 553 2972</p>
+                <a href="tel:0785532972" class="contact-btn btn-call">
+                    <i class="fas fa-phone-alt"></i> Click to Call
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(135deg, #25d366, #128c7e);">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Quick Response</p>
+                <a href="https://wa.me/94764738501" target="_blank" class="contact-btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-primary);">
+                <i class="fas fa-atom"></i> Pure Physics
+            </p>
+            <p>2026 A/L Revision Classes with Dhulhara Ahansa</p>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">
+                © 2026 Pure Physics. All rights reserved. | Designed for Excellence
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Month Data Structure
+        const monthsData = {
+            january: {
+                name: "January",
+                videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+                pdfs: [
+                    { name: "Mechanics - Kinematics Notes", size: "2.4 MB" },
+                    { name: "Dynamics Problem Set", size: "1.8 MB" },
+                    { name: "Circular Motion Summary", size: "3.1 MB" }
+                ],
+                topics: ["Kinematics Equations", "Newton's Laws", "Circular Motion", "Work & Energy"]
+            },
+            february: {
+                name: "February",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Oscillations & Waves", size: "2.1 MB" },
+                    { name: "Simple Harmonic Motion", size: "1.5 MB" }
+                ],
+                topics: ["SHM Equations", "Wave Properties", "Superposition", "Standing Waves"]
+            },
+            march: {
+                name: "March",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Thermal Physics", size: "2.8 MB" },
+                    { name: "Kinetic Theory of Gases", size: "2.2 MB" }
+                ],
+                topics: ["Thermodynamics", "Heat Transfer", "Ideal Gas Laws", "Entropy"]
+            },
+            april: {
+                name: "April",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Electric Fields", size: "3.2 MB" },
+                    { name: "Potential & Capacitance", size: "2.5 MB" }
+                ],
+                topics: ["Coulomb's Law", "Electric Field Lines", "Potential Difference", "Capacitors"]
+            },
+            may: {
+                name: "May",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Current Electricity", size: "2.9 MB" },
+                    { name: "Circuit Analysis", size: "3.5 MB" }
+                ],
+                topics: ["Ohm's Law", "Kirchhoff's Laws", "Circuit Theorems", "Power Calculations"]
+            },
+            june: {
+                name: "June",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Magnetic Fields", size: "2.6 MB" },
+                    { name: "Electromagnetic Induction", size: "3.0 MB" }
+                ],
+                topics: ["Biot-Savart Law", "Ampere's Law", "Faraday's Law", "Inductance"]
+            },
+            july: {
+                name: "July",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Alternating Current", size: "2.3 MB" },
+                    { name: "AC Circuits", size: "2.7 MB" }
+                ],
+                topics: ["AC Theory", "Phasor Diagrams", "Resonance", "Transformers"]
+            },
+            august: {
+                name: "August",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Geometrical Optics", size: "3.4 MB" },
+                    { name: "Physical Optics", size: "2.8 MB" }
+                ],
+                topics: ["Reflection", "Refraction", "Lenses", "Interference", "Diffraction"]
+            },
+            september: {
+                name: "September",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Modern Physics", size: "2.5 MB" },
+                    { name: "Quantum Mechanics Basics", size: "3.1 MB" }
+                ],
+                topics: ["Photoelectric Effect", "Atomic Models", "Matter Waves", "Uncertainty Principle"]
+            },
+            october: {
+                name: "October",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Nuclear Physics", size: "2.9 MB" },
+                    { name: "Radioactivity", size: "2.4 MB" }
+                ],
+                topics: ["Nuclear Structure", "Radioactive Decay", "Nuclear Reactions", "Mass-Energy"]
+            },
+            november: {
+                name: "November",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Past Paper Review 1", size: "4.2 MB" },
+                    { name: "Model Paper Solutions", size: "5.1 MB" }
+                ],
+                topics: ["Structured Questions", "Essay Questions", "MCQ Practice", "Time Management"]
+            },
+            december: {
+                name: "December",
+                videoId: "dQw4w9WgXcQ",
+                pdfs: [
+                    { name: "Final Revision Pack", size: "6.8 MB" },
+                    { name: "Quick Reference Guide", size: "3.2 MB" }
+                ],
+                topics: ["Complete Syllabus Review", "Exam Tips", "Common Mistakes", "Final Practice"]
+            }
+        };
+
+        // Initialize Months Grid
+        function initializeMonths() {
+            const grid = document.getElementById('monthsGrid');
+            const months = ['january', 'february', 'march', 'april', 'may', 'june', 
+                          'july', 'august', 'september', 'october', 'november', 'december'];
+            
+            months.forEach((month, index) => {
+                const card = document.createElement('div');
+                card.className = 'month-card';
+                card.setAttribute('data-month', month);
+                card.onclick = () => selectMonth(month);
+                
+                card.innerHTML = `
+                    <h3><i class="fas fa-calendar-check"></i> ${monthsData[month].name} 2026</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.5rem;">
+                        A/L Physics Revision
+                    </p>
+                    <div class="meta">
+                        <span><i class="fas fa-video"></i> ${monthsData[month].pdfs.length} Videos</span>
+                        <span><i class="fas fa-file-pdf"></i> ${monthsData[month].pdfs.length} PDFs</span>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Select Month Function
+        function selectMonth(month) {
+            const data = monthsData[month];
+            const display = document.getElementById('contentDisplay');
+            const title = document.getElementById('selectedMonthTitle');
+            const video = document.getElementById('monthVideo');
+            const pdfList = document.getElementById('pdfList');
+            const topicsList = document.getElementById('topicsList');
+            
+            // Update active state
+            document.querySelectorAll('.month-card').forEach(card => {
+                card.classList.remove('active');
+                if(card.getAttribute('data-month') === month) {
+                    card.classList.add('active');
+                }
+            });
+            
+            // Set content
+            title.textContent = `${data.name} 2026 - Revision Classes`;
+            video.src = `https://www.youtube.com/embed/${data.videoId}`;
+            
+            // Generate PDF list
+            pdfList.innerHTML = data.pdfs.map((pdf, index) => `
+                <li class="pdf-item">
+                    <div class="pdf-info">
+                        <i class="fas fa-file-pdf pdf-icon"></i>
+                        <div>
+                            <div style="font-weight: 500;">${pdf.name}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">${pdf.size}</div>
+                        </div>
+                    </div>
+                    <a href="#" class="download-btn" onclick="downloadPDF('${pdf.name}')">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </li>
+            `).join('');
+            
+            // Generate topics list
+            topicsList.innerHTML = data.topics.map(topic => `
+                <li><i class="fas fa-check-circle" style="color: var(--accent-purple); margin-right: 0.5rem;"></i> ${topic}</li>
+            `).join('');
+            
+            // Show display
+            display.classList.add('active');
+            display.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Close Content
+        function closeContent() {
+            document.getElementById('contentDisplay').classList.remove('active');
+            document.querySelectorAll('.month-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.getElementById('monthVideo').src = '';
+        }
+
+        // Download PDF Function
+        function downloadPDF(filename) {
+            // In production, replace with actual file path
+            alert(`Downloading: ${filename}\n\nIn production, this will download the actual PDF file.`);
+        }
+
+        // Search Function
+        function searchMonths() {
+            const input = document.getElementById('monthSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.month-card');
+            
+            cards.forEach(card => {
+                const month = card.getAttribute('data-month');
+                const data = monthsData[month];
+                const searchableText = `${data.name} ${data.topics.join(' ')}`.toLowerCase();
+                
+                if(searchableText.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize
+        window.onload = function() {
+            initializeMonths();
+        };
+
+        // Active Navigation Link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
